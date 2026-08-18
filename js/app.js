@@ -424,8 +424,12 @@ function runLuck(){
       </div>
     </div>`;
 
-  if(guessed && guessed!==luckCat)
-    h += `<p class="hint">질문 내용을 보고 <b>${guessed}</b> 분야로 판단했습니다.</p>`;
+  const tags=[];
+  if(guessed && guessed!==luckCat) tags.push(`<b>${guessed}</b> 분야`);
+  if(M.dir) tags.push(M.dir==="in" ? `<b>들이는 결정</b>(사다·시작하다·맺다)`
+                                   : `<b>내보내는 결정</b>(팔다·그만두다·끊다)`);
+  if(tags.length)
+    h += `<p class="hint">질문을 보고 ${tags.join("이자 ")}으로 판단했습니다.</p>`;
 
   h += `<div class="lucklines">
       <div><span class="lh">왜 그런가요</span>${R.saju_reason}</div>
